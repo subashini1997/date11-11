@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+   </head> 
+<body>
+   <div id="cont" style= "width: 1000; display: flex;flex-direction: row;flex-wrap: wrap;"></div>
+    <script>
+    
+    fetch("https://restcountries.com/v3.1/all")
+        .then(function(data){
+          return data.json();
+        })
+        
+            .then(function(dataObj){
+                console.log(dataObj)
+
+             dataObj.forEach(element=>{
+                 
+                var box=document.createElement("div");
+                 box.style.width="200px";
+                 box.style.height="200px";
+                 box.style.display="flex";
+                 box.style.flexDirection="column";
+                 box.style.border="1px solid brown";
+                 box.style.marginRight="20px";
+                 box.style.marginBottom="20px";
+                 box.style.marginLeft="30px";
+                 box.style.backgroundColor="lightpink"
+               
+               
+                  var img=document.createElement("img")
+                    img.setAttribute("src",element.flags.png)
+                    img.style.width="200px";
+                    img.style.height="100px";
+                    box.appendChild(img) 
+
+                   var nam=document.createElement("div");
+                   nam.innerText=element.name.common;
+                   box.appendChild(nam);
+                 
+                   var car=document.createElement("div");
+                   car.innerText=element.car.signs;
+                   box.appendChild(car);
+
+                   document.getElementById("cont").appendChild(box)
+                });    
+                   })
+              
+                
+                
+                 
+           
+        .catch(function(err){
+            console.log(err)
+        });
+    
+   </script>
+    
+</body>
+</html>
